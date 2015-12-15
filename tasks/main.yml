@@ -1,0 +1,9 @@
+---
+# tasks file for lua
+- name: Fedora install...
+  when: ansible_distribution == 'Fedora'
+  include: Fedora.yml
+
+- name: Ubuntu install...
+  when: ansible_distribution == 'Ubuntu'
+  include: Ubuntu.yml
