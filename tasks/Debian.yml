@@ -1,0 +1,6 @@
+---
+- name: installing lua packages...
+  package : name='{{item}}' state=present
+  with_items:
+    - lua
+    - luarocks

@@ -1,7 +1,0 @@
----
-- name: (Fedora) packages...
-  yum: name='{{item}}' state=latest
-  with_items:
-    - lua
-    - lua-devel
-    - luarocks

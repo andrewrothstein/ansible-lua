@@ -1,6 +1,0 @@
----
-- name: (Ubuntu) lua packages...
-  apt: name='{{item}}' state=latest
-  with_items:
-    - lua
-    - luarocks
