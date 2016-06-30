@@ -1,9 +1,11 @@
 ---
-# tasks file for lua
-- name: EL install...
-  when: ansible_os_family == 'RedHat'
-  include: EL.yml
+- name: resolve platform specific vars
+  include_vars: "{{item}}"
+  with_first_found:
+    - "{{ansible_distribution}}-{{ansible_distribution_release}}.yml"
+    - "{{ansible_distribution}}.yml"
+    - "{{ansible_os_family}}.yml"
 
-- name: Debian install...
-  when: ansible_os_family == 'Debian'
-  include: Debian.yml
+- name: install pkgs...
+  with_items: '{{lua_pkgs}}'
+  package: name={{item}} state=present

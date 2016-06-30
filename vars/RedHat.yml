@@ -1,0 +1,5 @@
+---
+lua_pkgs:
+  - lua
+  - lua-devel
+  - luarocks
