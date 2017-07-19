@@ -1,0 +1,4 @@
+---
+lua_pkgs:
+  - lua5.3
+  - lua5.3-dev

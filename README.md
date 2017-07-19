@@ -1,8 +1,8 @@
-[![CircleCI](https://circleci.com/gh/andrewrothstein/ansible-lua.svg?style=svg)](https://circleci.com/gh/andrewrothstein/ansible-lua)
 andrewrothstein.lua
 =========
+[![Build Status](https://travis-ci.org/andrewrothstein/ansible-lua.svg?branch=master)](https://travis-ci.org/andrewrothstein/ansible-lua)
 
-Installs [Lua](https://www.lua.org/)
+Installs [Lua](https://www.lua.org/) from OS packages.
 
 Requirements
 ------------

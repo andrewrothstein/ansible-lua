@@ -15,10 +15,17 @@ galaxy_info:
         - 23
         - 24
         - 25
+        - 26
     - name: Ubuntu
       versions:
         - trusty
         - xenial
+    - name: Debian
+      versions:
+        - jessie
+    - name: Alpine
+      versions:
+        - all
   galaxy_tags:
     - development
 
