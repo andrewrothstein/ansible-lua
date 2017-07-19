@@ -1,4 +1,4 @@
 ---
 lua_pkgs:
-  - lua5.3
+  - lua{{lua_pref_ver}}
   - luarocks

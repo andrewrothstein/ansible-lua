@@ -1,2 +1,3 @@
 ---
 # defaults file for lua
+lua_pref_ver: '5.3'
