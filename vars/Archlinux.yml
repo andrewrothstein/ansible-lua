@@ -1,4 +1,4 @@
 ---
-lua_pkgs:
-  - lua
+lua_dep_pkgs:
+  - readline
 

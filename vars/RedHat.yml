@@ -1,5 +1,3 @@
 ---
-lua_pkgs:
-  - lua
-  - lua-devel
-  - luarocks
+lua_dep_pkgs:
+  - readline-devel

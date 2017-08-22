@@ -1,3 +1,5 @@
 ---
-# defaults file for lua
-lua_pref_ver: '5.3'
+lua_ver: '5.3.4'
+lua_checksum: md5:53a9c68bcc0eda58bdc2095ad5cdfc63
+lua_mirror: https://www.lua.org/ftp
+lua_src_parent_dir: /usr/local

@@ -1,4 +1,3 @@
 ---
-lua_pkgs:
-  - lua{{lua_pref_ver}}
-  - lua{{lua_pref_ver}}-dev
+lua_dep_pkgs:
+  - readline-dev

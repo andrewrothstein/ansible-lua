@@ -1,4 +1,0 @@
----
-lua_pkgs:
-  - lua{{lua_pref_ver}}
-  - luarocks

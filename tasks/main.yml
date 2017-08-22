@@ -10,8 +10,44 @@
       paths:
         - '{{role_path}}/vars'
 
-- name: install pkgs...
-  with_items: '{{lua_pkgs}}'
+- name: download...
+  become: yes
+  become_user: root
+  get_url:
+    url: '{{lua_tgz_url}}'
+    dest: /tmp/{{lua_tgz}}
+    checksum: '{{lua_checksum}}'
+    mode: 0644
+
+- name: unarchive...
+  become: yes
+  become_user: root
+  unarchive:
+    remote_src: yes
+    src: /tmp/{{lua_tgz}}
+    dest: '{{lua_src_parent_dir}}'
+    creates: '{{lua_src_dir}}'
+
+- name: install deps...
+  become: yes
+  become_user: root
+  with_items: '{{lua_dep_pkgs}}'
   package:
     name: '{{item}}'
     state: present
+
+- name: build...
+  become: yes
+  become_user: root
+  command: make linux test
+  args:
+    chdir: '{{lua_src_dir}}'
+    creates: '{{lua_src_dir}}/src/lua'
+
+- name: install...
+  become: yes
+  become_user: root
+  command: make install
+  args:
+    chdir: '{{lua_src_dir}}'
+    creates: /usr/local/bin/lua
