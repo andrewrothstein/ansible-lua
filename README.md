@@ -2,7 +2,7 @@ andrewrothstein.lua
 =========
 [![Build Status](https://travis-ci.org/andrewrothstein/ansible-lua.svg?branch=master)](https://travis-ci.org/andrewrothstein/ansible-lua)
 
-Installs [Lua](https://www.lua.org/) from OS packages.
+Builds and installs [Lua](https://www.lua.org/) from source.
 
 Requirements
 ------------
