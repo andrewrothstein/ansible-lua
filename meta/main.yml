@@ -33,5 +33,5 @@ dependencies:
   - src: andrewrothstein.unarchive-deps
     version: v1.0.9
   - src: andrewrothstein.gcc-toolbox
-    version: v1.0.6
+    version: v1.0.7
   
