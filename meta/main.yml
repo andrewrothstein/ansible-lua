@@ -1,37 +1,34 @@
----
+dependencies:
+- role: andrewrothstein.unarchive-deps
+  version: v1.0.12
+- role: andrewrothstein.gcc-toolbox
+  version: v1.0.7
 galaxy_info:
   author: Andrew Rothstein
-  description: lua role
   company: BlackRock
+  description: lua role
+  galaxy_tags:
+  - development
   license:
-    - MIT
+  - MIT
   min_ansible_version: 2.0
   platforms:
-    - name: EL
-      versions:
-        - 7
-    - name: Fedora
-      versions:
-        - 23
-        - 24
-        - 25
-        - 26
-    - name: Ubuntu
-      versions:
-        - trusty
-        - xenial
-    - name: Debian
-      versions:
-        - jessie
-    - name: Alpine
-      versions:
-        - all
-  galaxy_tags:
-    - development
-
-dependencies:
-  - src: andrewrothstein.unarchive-deps
-    version: v1.0.10
-  - src: andrewrothstein.gcc-toolbox
-    version: v1.0.7
-  
+  - name: EL
+    versions:
+    - 7
+  - name: Fedora
+    versions:
+    - 23
+    - 24
+    - 25
+    - 26
+  - name: Ubuntu
+    versions:
+    - trusty
+    - xenial
+  - name: Debian
+    versions:
+    - jessie
+  - name: Alpine
+    versions:
+    - all
