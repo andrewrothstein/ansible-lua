@@ -15,5 +15,5 @@
 - fedora_24
 - fedora_25
 - fedora_26
-- ubuntu_trusty
+- ubi8_8.0
 - ubuntu_xenial
