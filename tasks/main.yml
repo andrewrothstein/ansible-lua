@@ -1,53 +1,59 @@
 ---
 - name: resolve platform specific vars
-  include_vars: '{{item}}'
+  include_vars: '{{ item }}'
   with_first_found:
     - files:
-        - '{{ansible_distribution}}-{{ansible_distribution_release}}.yml'
-        - '{{ansible_distribution}}.yml'
-        - '{{ansible_os_family}}.yml'
+        - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
+        - '{{ ansible_distribution }}.yml'
+        - '{{ ansible_os_family }}.yml'
       skip: true
       paths:
-        - '{{role_path}}/vars'
+        - '{{ role_path }}/vars'
 
-- name: download...
+- name: downloading {{ lua_url }}
   become: yes
   become_user: root
   get_url:
-    url: '{{lua_tgz_url}}'
-    dest: /tmp/{{lua_tgz}}
-    checksum: '{{lua_checksum}}'
+    url: '{{ lua_url }}'
+    dest: '{{ lua_tmp_tgz }}'
+    checksum: '{{ lua_checksum }}'
     mode: 0644
 
-- name: unarchive...
+- name: unarchiving {{ lua_tmp_tgz }} to {{ lua_src_parent_dir }}
   become: yes
   become_user: root
   unarchive:
     remote_src: yes
-    src: /tmp/{{lua_tgz}}
-    dest: '{{lua_src_parent_dir}}'
-    creates: '{{lua_src_dir}}'
+    src: '{{ lua_tmp_tgz }}'
+    dest: '{{ lua_src_parent_dir }}'
+    creates: '{{ lua_src_dir }}'
+
+- name: rm {{ lua_tmp_tgz }}
+  become: yes
+  become_user: root
+  file:
+    path: '{{ lua_tmp_tgz }}'
+    state: absent
 
 - name: install deps...
   become: yes
   become_user: root
-  with_items: '{{lua_dep_pkgs}}'
   package:
-    name: '{{item}}'
+    name: '{{ lua_dep_pkgs }}'
     state: present
 
-- name: build...
+- name: build/test...
   become: yes
   become_user: root
   command: make linux test
   args:
-    chdir: '{{lua_src_dir}}'
-    creates: '{{lua_src_dir}}/src/lua'
+    chdir: '{{ lua_src_dir }}'
+    creates: '{{ lua_src_dir }}/src/lua'
 
 - name: install...
   become: yes
   become_user: root
   command: make install
   args:
-    chdir: '{{lua_src_dir}}'
+    chdir: '{{ lua_src_dir }}'
     creates: /usr/local/bin/lua

@@ -1,6 +1,8 @@
 ---
 # vars file for lua
-lua_name: lua-{{lua_ver}}
-lua_tgz: '{{lua_name}}.tar.gz'
-lua_tgz_url: '{{lua_mirror}}/{{lua_tgz}}'
-lua_src_dir: '{{lua_src_parent_dir}}/{{lua_name}}'
+lua_name: lua-{{ lua_ver }}
+lua_tgz: '{{ lua_name }}.tar.gz'
+lua_tmp_tgz: /tmp/{{ lua_tgz }}
+lua_url: '{{ lua_mirror }}/{{ lua_tgz }}'
+lua_src_dir: '{{ lua_src_parent_dir }}/{{ lua_name }}'
+lua_checksum: '{{ lua_checksums[lua_ver] }}'
