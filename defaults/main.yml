@@ -1,5 +1,5 @@
 ---
-lua_ver: 5.4.2
+lua_ver: 5.4.3
 lua_mirror: https://www.lua.org/ftp
 lua_src_parent_dir: /usr/local
 lua_checksums:
@@ -9,3 +9,5 @@ lua_checksums:
   '5.4.1': sha256:4ba786c3705eb9db6567af29c91a01b81f1c0ac3124fdbf6cd94bdd9e53cca7d
   # https://www.lua.org/ftp/lua-5.4.2.tar.gz
   '5.4.2': sha256:11570d97e9d7303c0a59567ed1ac7c648340cd0db10d5fd594c09223ef2f524f
+  # https://www.lua.org/ftp/lua-5.4.3.tar.gz
+  '5.4.3': sha256:f8612276169e3bfcbcfb8f226195bfc6e466fe13042f1076cbde92b7ec96bbfb
