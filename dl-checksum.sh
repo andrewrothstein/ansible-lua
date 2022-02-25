@@ -12,11 +12,11 @@ dl()
 
     if [ ! -e $lfile ];
     then
-        wget -q -O $lfile $url
+        curl -sSLf -o $lfile $url
     fi
 
     printf "  # %s\n" $url
     printf "  '%s': sha256:%s\n" $ver `sha256sum $lfile | awk '{print $1}'`
 }
 
-dl ${1:-5.4.3}
+dl ${1:-5.4.4}
