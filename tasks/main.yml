@@ -1,4 +1,8 @@
 ---
+- include_role:
+    name: andrewrothstein.unarchive-deps
+- include_role:
+    name: andrewrothstein.gcc-toolbox
 - name: resolve platform specific vars
   include_vars: '{{ item }}'
   with_first_found:
@@ -11,7 +15,7 @@
         - '{{ role_path }}/vars'
 
 - name: downloading {{ lua_url }}
-  become: yes
+  become: true
   become_user: root
   get_url:
     url: '{{ lua_url }}'
@@ -20,30 +24,30 @@
     mode: 0644
 
 - name: unarchiving {{ lua_tmp_tgz }} to {{ lua_src_parent_dir }}
-  become: yes
+  become: true
   become_user: root
   unarchive:
-    remote_src: yes
+    remote_src: true
     src: '{{ lua_tmp_tgz }}'
     dest: '{{ lua_src_parent_dir }}'
     creates: '{{ lua_src_dir }}'
 
 - name: rm {{ lua_tmp_tgz }}
-  become: yes
+  become: true
   become_user: root
   file:
     path: '{{ lua_tmp_tgz }}'
     state: absent
 
 - name: install deps...
-  become: yes
+  become: true
   become_user: root
   package:
     name: '{{ lua_dep_pkgs }}'
     state: present
 
 - name: build/test...
-  become: yes
+  become: true
   become_user: root
   command: make linux test
   args:
@@ -51,7 +55,7 @@
     creates: '{{ lua_src_dir }}/src/lua'
 
 - name: install...
-  become: yes
+  become: true
   become_user: root
   command: make install
   args:
