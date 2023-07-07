@@ -1,5 +1,5 @@
 ---
 - name: andrewrothstein.unarchive-deps
-  version: v1.2.4
+  version: v1.2.5
 - name: andrewrothstein.gcc-toolbox
-  version: v1.1.9
+  version: v1.1.10
