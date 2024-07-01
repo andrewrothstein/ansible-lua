@@ -1,10 +1,12 @@
 ---
-- include_role:
-    name: andrewrothstein.unarchive-deps
-- include_role:
-    name: andrewrothstein.gcc-toolbox
-- name: resolve platform specific vars
-  include_vars: '{{ item }}'
+- name: Installing andrewrothstein.unarchivedeps
+  ansible.builtin.include_role:
+    name: andrewrothstein.unarchivedeps
+- name: Installing andrewrothstein.gcc_toolbox
+  ansible.builtin.include_role:
+    name: andrewrothstein.gcc_toolbox
+- name: Resolve platform specific vars
+  ansible.builtin.include_vars: '{{ item }}'
   with_first_found:
     - files:
         - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
@@ -14,50 +16,50 @@
       paths:
         - '{{ role_path }}/vars'
 
-- name: downloading {{ lua_url }}
+- name: Downloading {{ lua_url }}
   become: true
   become_user: root
-  get_url:
+  ansible.builtin.get_url:
     url: '{{ lua_url }}'
     dest: '{{ lua_tmp_tgz }}'
     checksum: '{{ lua_checksum }}'
-    mode: 0644
+    mode: '644'
 
-- name: unarchiving {{ lua_tmp_tgz }} to {{ lua_src_parent_dir }}
+- name: Unarchiving {{ lua_tmp_tgz }} to {{ lua_src_parent_dir }}
   become: true
   become_user: root
-  unarchive:
+  ansible.builtin.unarchive:
     remote_src: true
     src: '{{ lua_tmp_tgz }}'
     dest: '{{ lua_src_parent_dir }}'
     creates: '{{ lua_src_dir }}'
 
-- name: rm {{ lua_tmp_tgz }}
+- name: Rm {{ lua_tmp_tgz }}
   become: true
   become_user: root
-  file:
+  ansible.builtin.file:
     path: '{{ lua_tmp_tgz }}'
     state: absent
 
-- name: install deps...
+- name: Install deps...
   become: true
   become_user: root
-  package:
+  ansible.builtin.package:
     name: '{{ lua_dep_pkgs }}'
     state: present
 
-- name: build/test...
+- name: Build/test...
   become: true
   become_user: root
-  command: make linux test
+  ansible.builtin.command: make linux test
   args:
     chdir: '{{ lua_src_dir }}'
     creates: '{{ lua_src_dir }}/src/lua'
 
-- name: install...
+- name: Install...
   become: true
   become_user: root
-  command: make install
+  ansible.builtin.command: make install
   args:
     chdir: '{{ lua_src_dir }}'
     creates: /usr/local/bin/lua

@@ -1,9 +1,13 @@
 ---
-- hosts: all
+- name: Testing andrewrothstein.lua
+  hosts: all
   roles:
     - role: '{{ playbook_dir }}'
   tasks:
-    - command: /usr/local/bin/lua -v
+    - name: Executing 'lua -v'
+      ansible.builtin.command: lua -v
+      changed_when: false
       register: lua_test_output
-    - debug:
+    - name: Output from 'lua -v'
+      ansible.builtin.debug:
         msg: '{{ lua_test_output.stdout }}'
